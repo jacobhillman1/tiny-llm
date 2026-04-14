@@ -29,6 +29,8 @@ def normalize_torch_state(obj):
     for key, value in obj.items():
         if key.startswith("_orig_mod."):
             key = key[len("_orig_mod.") :]
+        if isinstance(value, dict) and set(value) >= {"q", "scale"}:
+            value = value["q"].float() * value["scale"].float()
         state[key] = value
     return state
 

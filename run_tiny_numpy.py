@@ -148,8 +148,20 @@ def load_torch_state_dict(path):
     for key, value in obj.items():
         if key.startswith("_orig_mod."):
             key = key[len("_orig_mod.") :]
-        state[key] = value
+        state[key] = normalize_state_value(value)
     return state
+
+
+def normalize_state_value(value):
+    if isinstance(value, dict) and set(value) >= {"q", "scale"}:
+        q = value["q"]
+        scale = value["scale"]
+        if not isinstance(q, np.ndarray) or not isinstance(scale, np.ndarray):
+            raise TypeError("Quantized checkpoint entries must contain numpy q and scale arrays")
+        return q.astype(np.float32) * np.float32(scale.item())
+    if isinstance(value, np.ndarray) and value.dtype == np.float16:
+        return value.astype(np.float32)
+    return value
 
 
 def infer_config(state, n_head):
