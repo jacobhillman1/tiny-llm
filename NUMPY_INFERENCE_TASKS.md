@@ -20,14 +20,56 @@ Existing inputs:
 - `run_tiny.py`
 - `tinytrain.py`
 
+## Implementation Progress
+
+Completed:
+
+- [x] Task 1: Confirm Baseline
+- [x] Task 2: Create The Numpy Runner Skeleton
+- [x] Task 3: Implement The `.pt` Zip Reader
+- [x] Task 4: Implement The Custom Pickle Unpickler
+- [x] Task 5: Rebuild Tensors As Numpy Arrays
+- [x] Task 6: Normalize And Validate The State Dict
+- [x] Task 7: Implement Math Primitives
+- [x] Task 8: Implement The Numpy GPT Forward Pass
+- [x] Task 9: Implement Attention
+- [x] Task 10: Implement MLP
+- [x] Task 11: Implement Block Forward
+- [x] Task 12: Implement Tokenization
+- [x] Task 13: Implement Generation
+- [x] Task 14: Add CLI Output
+- [x] Task 15: Smoke Test The Runner
+- [x] Task 16: Compare Checkpoint Loading Against Torch
+- [x] Task 17: Compare Logits Against Torch
+- [x] Task 18: Clean Up Implementation
+
+Commits:
+
+- `c205601` - Add numpy tiny GPT runner
+- `af43ab1` - Add numpy runner comparison check
+
+Deferred optional work:
+
+- [ ] Task 19: Optional Fp16 Support
+- [ ] Task 20: Optional Int8 `.pt` Support
+- [ ] Task 21: Optional Raw Int8 `.bin` Support
+
+Verification completed:
+
+- [x] `python3 run_tiny.py`
+- [x] `python3 run_tiny_numpy.py --max-new-tokens 20`
+- [x] `python3 run_tiny_numpy.py --help`
+- [x] `python3 compare_tiny_numpy.py`
+- [x] `python3 -m py_compile run_tiny_numpy.py compare_tiny_numpy.py`
+
 ## Acceptance Criteria
 
-- [ ] `run_tiny_numpy.py` runs without importing `torch`.
-- [ ] The fp32 `.pt` checkpoint loads into numpy arrays.
-- [ ] The numpy model forward pass produces logits close to the Torch model for a fixed prompt.
-- [ ] Text generation works with the Shakespeare character tokenizer in `meta.pkl`.
-- [ ] The default CLI behavior matches the existing tiny runner settings.
-- [ ] Existing untracked files are not overwritten or reverted.
+- [x] `run_tiny_numpy.py` runs without importing `torch`.
+- [x] The fp32 `.pt` checkpoint loads into numpy arrays.
+- [x] The numpy model forward pass produces logits close to the Torch model for a fixed prompt.
+- [x] Text generation works with the Shakespeare character tokenizer in `meta.pkl`.
+- [x] The default CLI behavior matches the existing tiny runner settings.
+- [x] Existing untracked files are not overwritten or reverted.
 
 ## Task 1: Confirm Baseline
 
