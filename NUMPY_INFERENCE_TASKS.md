@@ -42,24 +42,30 @@ Completed:
 - [x] Task 16: Compare Checkpoint Loading Against Torch
 - [x] Task 17: Compare Logits Against Torch
 - [x] Task 18: Clean Up Implementation
+- [x] Task 19: Optional Fp16 Support
+- [x] Task 20: Optional Int8 `.pt` Support
 
 Commits:
 
 - `c205601` - Add numpy tiny GPT runner
 - `af43ab1` - Add numpy runner comparison check
+- `2bca7e5` - Track numpy inference implementation progress
+- `2670687` - Support fp16 and int8 numpy checkpoints
 
 Deferred optional work:
 
-- [ ] Task 19: Optional Fp16 Support
-- [ ] Task 20: Optional Int8 `.pt` Support
 - [ ] Task 21: Optional Raw Int8 `.bin` Support
 
 Verification completed:
 
 - [x] `python3 run_tiny.py`
 - [x] `python3 run_tiny_numpy.py --max-new-tokens 20`
+- [x] `python3 run_tiny_numpy.py --ckpt out-tiny-v2/model_fp16.pt --max-new-tokens 20`
+- [x] `python3 run_tiny_numpy.py --ckpt out-tiny-v2/model_int8.pt --max-new-tokens 20`
 - [x] `python3 run_tiny_numpy.py --help`
 - [x] `python3 compare_tiny_numpy.py`
+- [x] `python3 compare_tiny_numpy.py --ckpt out-tiny-v2/model_fp16.pt --logit-atol 1e-4`
+- [x] `python3 compare_tiny_numpy.py --ckpt out-tiny-v2/model_int8.pt --array-atol 1e-7 --logit-atol 1e-4`
 - [x] `python3 -m py_compile run_tiny_numpy.py compare_tiny_numpy.py`
 
 ## Acceptance Criteria
